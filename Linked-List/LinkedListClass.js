@@ -8,9 +8,15 @@ class Node {
 }
 
 class LinkedList {
-  constructor() {
+  constructor(...args) {
     this.head = null;
     this.size = 0;
+    this.insertParams(args);
+  }
+  insertParams(args) {
+    args.forEach((arg) => {
+      this.insertTail(arg);
+    });
   }
   // insert node first
   insertHead(data) {
@@ -66,6 +72,12 @@ class LinkedList {
       i++;
     }
   }
+
+  validIndex(index) {
+    //check if it is a number
+    if (this.size === 0) return "Invalid Index: List is empty";
+    if (index < 1 || index > this.size) return `Invalid Index: Out of range`;
+  }
   // add node at index
   insertAt(data, index) {
     if (this.size === 0) return "Invalid Index: List is empty";
@@ -98,13 +110,15 @@ class LinkedList {
   }
 }
 
-let list = new LinkedList();
-list.insertTail("A");
-list.insertHead("B");
-list.insertHead("C");
-list.insertHead("D");
-list.insertHead("E");
-list.insertHead("F");
-list.insertAt("INSERT", 1);
+// let list = new LinkedList();
+// list.insertTail("A");
+// list.insertHead("B");
+// list.insertHead("C");
+// list.insertHead("D");
+// list.insertHead("E");
+// list.insertHead("F");
+// list.insertAt("INSERT", 1);
 // displays entire object (object, showHidden, depth, color)
-console.log(util.inspect(list, false, null, true));
+// console.log(util.inspect(list, false, null, true));
+
+module.exports = LinkedList;
