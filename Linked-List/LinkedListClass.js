@@ -22,6 +22,7 @@ class LinkedList {
   insertHead(data) {
     this.head = new Node(data, this.head);
     this.size += 1;
+    return this;
   }
 
   // insert node last
@@ -114,4 +115,4 @@ class LinkedList {
   }
 }
 
-module.exports = LinkedList;
+module.exports = { LinkedList };
