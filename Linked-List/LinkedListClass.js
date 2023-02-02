@@ -101,24 +101,17 @@ class LinkedList {
     this.size = 0;
   }
   // print nodes in order
-  print() {
+  printData() {
     let currNode = this.head;
     while (currNode) {
       console.log(currNode.data);
       currNode = currNode.next;
     }
   }
-}
 
-// let list = new LinkedList();
-// list.insertTail("A");
-// list.insertHead("B");
-// list.insertHead("C");
-// list.insertHead("D");
-// list.insertHead("E");
-// list.insertHead("F");
-// list.insertAt("INSERT", 1);
-// displays entire object (object, showHidden, depth, color)
-// console.log(util.inspect(list, false, null, true));
+  printAll() {
+    console.log(util.inspect(this.head, false, null, true));
+  }
+}
 
 module.exports = LinkedList;
