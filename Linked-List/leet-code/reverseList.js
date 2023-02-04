@@ -1,6 +1,4 @@
-const { LinkedList } = require("../LinkedListClass.js");
-
-LinkedList.prototype.reverseList = function () {
+function reverseList() {
   let prev = null;
   while (this.head) {
     const next = this.head.next;
@@ -10,7 +8,9 @@ LinkedList.prototype.reverseList = function () {
   }
   this.head = prev;
   return this;
-};
+}
+
+module.exports = reverseList;
 
 // let testing = new LinkedList(1, 2, 3);
 // let result = testing.reverseList();
