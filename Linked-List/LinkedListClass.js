@@ -5,15 +5,20 @@ class Node {
     this.data = data;
     this.next = next;
   }
+
+  printNode() {
+    console.log(util.inspect(this, false, null, true));
+  }
 }
 
 class LinkedList {
   constructor(...args) {
     this.head = null;
     this.size = 0;
-    this.insertParams(args);
+    this.#insertParams(args);
   }
-  insertParams(args) {
+  // private method to insert arguments
+  #insertParams(args) {
     args.forEach((arg) => {
       this.insertTail(arg);
     });
@@ -29,7 +34,7 @@ class LinkedList {
   insertTail(data) {
     if (!this.head) {
       this.insertHead(data);
-      return;
+      return this;
     }
 
     let currNode = this.head;
@@ -47,7 +52,7 @@ class LinkedList {
     let currNode = this.head;
     let i = 0;
     while (i < this.size && currNode) {
-      if (i === index - 1) return currNode;
+      if (i === index - 1) return currNode.data;
       currNode = currNode.next;
       i++;
     }
@@ -57,28 +62,26 @@ class LinkedList {
     if (this.size === 0) return "Invalid Index: List is empty";
     if (index < 1 || index > this.size) return `Invalid Index: Out of range`;
     if (index === 1) {
+      const deletedData = this.head.data;
       this.head = this.head.next;
-      return;
+      return deletedData;
     }
     let currNode = this.head;
 
     let i = 0;
     while (i < this.size && currNode) {
       if (i + 1 === index - 1) {
+        const deletedData = currNode.next.data;
         currNode.next = currNode.next.next;
         this.size--;
-        return this.head;
+
+        return deletedData;
       }
       currNode = currNode.next;
       i++;
     }
   }
 
-  validIndex(index) {
-    //check if it is a number
-    if (this.size === 0) return "Invalid Index: List is empty";
-    if (index < 1 || index > this.size) return `Invalid Index: Out of range`;
-  }
   // add node at index
   insertAt(data, index) {
     if (this.size === 0) return "Invalid Index: List is empty";
@@ -100,6 +103,7 @@ class LinkedList {
   clear() {
     this.head = null;
     this.size = 0;
+    return this;
   }
   // print nodes in order
   printData() {
@@ -111,7 +115,7 @@ class LinkedList {
   }
 
   printAll() {
-    console.log(util.inspect(this.head, false, null, true));
+    console.log(util.inspect(this, false, null, true));
   }
 }
 
