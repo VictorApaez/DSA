@@ -1,19 +1,17 @@
-const LinkedList = require("../LinkedListClass.js");
-
-var middleNode = function (head) {
+function middleNode() {
   let count = 0;
-  currNode = head;
+  currNode = this.head;
   while (currNode) {
     currNode = currNode.next;
     count++;
   }
   count = Math.floor(count / 2);
+  this.size -= count;
   while (count > 0) {
-    head = head.next;
+    this.head = this.head.next;
     count--;
   }
-  return head;
-};
+  return this;
+}
 
-let testList = new LinkedList(1, 2, 3, 4, 6); // Output: [3,4,5]
-console.log(middleNode(testList.head));
+module.exports = middleNode;
