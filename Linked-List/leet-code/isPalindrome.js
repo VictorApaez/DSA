@@ -1,5 +1,5 @@
 // 234. Palindrome Linked List
-var isPalindrome = function () {
+function isPalindrome() {
   let curr = this.head;
   let forward = "";
   let backwards = "";
@@ -9,8 +9,7 @@ var isPalindrome = function () {
     backwards = curr.data + backwards;
     curr = curr.next;
   }
-  console.log(forward, backwards);
   return forward === backwards;
-};
+}
 
 module.exports = isPalindrome;
