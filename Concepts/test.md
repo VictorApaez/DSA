@@ -5,3 +5,40 @@ create a file for each concept and make examples.
 - Memory (Stack vs Heap)
 - Bit Manipulation
 - Dynamic Programming
+- this keyword
+- Execution context
+- memoization
+- currying
+- monads
+
+- Variables and data types
+- Functions and methods
+- Objects and classes
+- Arrays and array methods
+- Control structures, such as if/else, switch, and loops
+- Error handling and debugging
+- Regular expressions
+- JSON and parsing data
+- Scope and hoisting
+- Closures and lexical scoping
+- Callbacks, promises, and async/await
+- Functional programming concepts, such as pure functions and higher-order functions
+- Asynchronous programming concepts, such as event loop and timers
+- Modules and module patterns
+- Event-driven programming
+- ES6+ features, such as arrow functions, template literals, and destructuring
+- Object-oriented programming concepts, such as inheritance and encapsulation
+- Generators and iterators
+- Web APIs, such as DOM, XMLHttpRequest, and Fetch
+- Browser storage, such as localStorage and sessionStorage
+- Browser events and event handling
+- Client-side validation and form handling
+- Third-party libraries and frameworks, such as jQuery, React, and Angular
+- Testing frameworks, such as Mocha, Jasmine, and Jest
+- Debugging tools, such as the browser console and debugger statements
+- Performance optimization techniques, such as caching and minification
+- Security best practices, such as preventing XSS and CSRF attacks
+- Design patterns, such as MVC and observer
+- Node.js and server-side JavaScript
+- RESTful APIs and AJAX
+- Web sockets and real-time communication
