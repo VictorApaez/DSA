@@ -114,7 +114,7 @@ const normalizedState = {
 function newPost() {
   // response from the server
   const res = {
-    id: "2Wn4m",
+    id: "4sjo7",
     title: "THIS IS THE POST I JUST ADDED",
     content: "This is my first post.",
     userId: "8Cv1n",
@@ -129,7 +129,7 @@ function newPost() {
   normalizedState.posts.allIds.push(res.id);
 }
 
-function editPost() {
+function editPostById() {
   // These would be parameters
   const postId = "2Wn4m";
   const changes = {
@@ -148,20 +148,40 @@ function editPost() {
   normalizedState.posts.byId[postId] = updatesPost;
 }
 
-function deletePost() {
-  // This would be a param instead of hardcoding the id
-  const postId = "2Wn4m";
+function deletePost(postId) {
+  const { users, posts, comments } = normalizedState;
 
-  // Remove the post from the users posts
-  // get all userIds from the post
-  // remove the post Id from each of the users posts array
+  const post = posts.byId[postId];
+  const user = users.byId[post.userId];
 
-  // Remove the comments associated with the post
-  // get all commentIds from the post
+  // remove the post from the byId object and allIds array of the posts property
+  delete posts.byId[postId];
+  posts.allIds = posts.allIds.filter((id) => id !== postId);
 
-  // Remove the post from the posts byId and allId
-  // remove the post from the byId object
-  // Remove the postId from the allIds array
+  // remove the post ID from the allIds array of the posts property of the user who created the post
+  const userPostsAllIds = user.posts.allIds.filter((id) => id !== postId);
+  user.posts.allIds = userPostsAllIds;
+
+  // remove all comments associated with the post from the byId object of the comments property
+  if (post.comments && post.comments.allIds) {
+    post.comments.allIds.forEach(
+      (commentId) => delete comments.byId[commentId]
+    );
+  }
+
+  // remove all comment IDs associated with the post from the allIds array of the comments property
+  const commentsAllIds = comments.allIds.filter(
+    (id) => !post.comments?.allIds?.includes(id)
+  );
+  comments.allIds = commentsAllIds;
+
+  // remove the comment ID from the allIds array of the comments property of the user who created the comment
+  Object.values(users.byId).forEach((user) => {
+    const userCommentsAllIds = user.comments.allIds.filter(
+      (id) => !post.comments?.allIds?.includes(id)
+    );
+    user.comments.allIds = userCommentsAllIds;
+  });
 }
 
 function getPosts() {
@@ -188,6 +208,10 @@ function getPostsByUserId() {
   return allPostIds.map((id) => normalizedState.posts.byId[id]);
 }
 
+// newPost();
+// deletePost("1Kj5t");
+// console.log(getPosts());
+// console.log(JSON.stringify(normalizedState, null, 2));
 // COMMENTS CRUD ===============================
 
 function addComment() {}
